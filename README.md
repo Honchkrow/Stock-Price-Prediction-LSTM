@@ -1,3 +1,7 @@
+# Notice
+I did some modification to run these scripts using python3.6, tensorflow1.14.
+
+I also tried tf2.0, by changing keras to tf.keras. The model converge too slow compared with tf1.14, and I have no idea about this.
 # Stock Price Prediction of Apple Inc. Using Recurrent Neural Network
 OHLC Average Prediction of Apple Inc. Using LSTM Recurrent Neural Network
 
