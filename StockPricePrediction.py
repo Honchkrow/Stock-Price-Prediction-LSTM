@@ -8,7 +8,16 @@ from sklearn.metrics import mean_squared_error
 from keras.models import Sequential
 from keras.layers import Dense, Activation
 from keras.layers import LSTM
-import preprocessing
+
+
+def new_dataset(dataset, step_size):
+    data_X, data_Y = [], []
+    for i in range(len(dataset)-step_size-1):
+        a = dataset[i:(i+step_size), 0]
+        data_X.append(a)
+        data_Y.append(dataset[i + step_size, 0])
+    return np.array(data_X), np.array(data_Y)
+
 
 # FOR REPRODUCIBILITY
 np.random.seed(7)
@@ -46,8 +55,8 @@ train_OHLC, test_OHLC = (
 )
 
 # TIME-SERIES DATASET (FOR TIME T, VALUES FOR TIME T+1)
-trainX, trainY = preprocessing.new_dataset(train_OHLC, 1)
-testX, testY = preprocessing.new_dataset(test_OHLC, 1)
+trainX, trainY = new_dataset(train_OHLC, 1)
+testX, testY = new_dataset(test_OHLC, 1)
 
 # RESHAPING TRAIN AND TEST DATA
 trainX = np.reshape(trainX, (trainX.shape[0], 1, trainX.shape[1]))
